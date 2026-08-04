@@ -6,10 +6,12 @@ Fill in each function body (replace `unimplemented()`), then run:
     python topics/02_dictionaries.py            # grade your solutions
     python topics/02_dictionaries.py --answers  # show the answer key
 """
+from collections import defaultdict
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from harness import Quiz, unimplemented
 from answers.a02_dictionaries import ANSWERS
+from functools import reduce
 
 quiz = Quiz("Dictionaries")
 
@@ -29,7 +31,7 @@ quiz = Quiz("Dictionaries")
     answer=ANSWERS["zip_to_dict"],
 )
 def zip_to_dict(keys, values):
-    return unimplemented()
+    return dict(zip(keys,values))
 
 
 # Q2 -------------------------------------------------------------------------
@@ -43,7 +45,7 @@ def zip_to_dict(keys, values):
     answer=ANSWERS["merge_dicts"],
 )
 def merge_dicts(d1, d2):
-    return unimplemented()
+    return d1 | d2
 
 
 # Q3 -------------------------------------------------------------------------
@@ -58,7 +60,12 @@ def merge_dicts(d1, d2):
     answer=ANSWERS["nested_get"],
 )
 def nested_get(d, path):
-    return unimplemented()
+    current = d
+    for p in path :
+        current = current[p]
+    return current
+    # reduce(lambda current , key : current[key] , path , d)
+
 
 
 # Q4 -------------------------------------------------------------------------
@@ -72,7 +79,7 @@ def nested_get(d, path):
     answer=ANSWERS["squares_dict"],
 )
 def squares_dict(num):
-    return unimplemented()
+    return { n:n*n for n in range(1 , num+1)}
 
 
 # Q5 -------------------------------------------------------------------------
@@ -87,7 +94,9 @@ def squares_dict(num):
     answer=ANSWERS["pick_keys"],
 )
 def pick_keys(d, keys):
-    return unimplemented()
+    return {key:value for key , value in d.items() if key in set(keys)}
+
+
 
 
 # Q6 -------------------------------------------------------------------------
@@ -101,7 +110,7 @@ def pick_keys(d, keys):
     answer=ANSWERS["key_of_min_value"],
 )
 def key_of_min_value(d):
-    return unimplemented()
+    return min(d.items() , key = lambda item:item[1])[0]
 
 
 # Q7 -------------------------------------------------------------------------
@@ -116,7 +125,7 @@ def key_of_min_value(d):
     answer=ANSWERS["drop_key"],
 )
 def drop_key(d, key):
-    return unimplemented()
+    return dict(filter(lambda item: item[0] != key , d.items() ))
 
 
 # Q8 -------------------------------------------------------------------------
@@ -130,7 +139,14 @@ def drop_key(d, key):
     answer=ANSWERS["char_frequency"],
 )
 def char_frequency(s):
-    return unimplemented()
+      char_freq = defaultdict(int)
+      for c in s :
+          if c not in char_freq:
+              char_freq[c] = 0
+          char_freq[c] += 1
+      return char_freq
+
+
 
 
 # Q9 -------------------------------------------------------------------------
@@ -144,7 +160,7 @@ def char_frequency(s):
     answer=ANSWERS["invert_dict"],
 )
 def invert_dict(d):
-    return unimplemented()
+    return {value : key for key , value in d.items()}
 
 
 # Q10 ------------------------------------------------------------------------
@@ -158,7 +174,7 @@ def invert_dict(d):
     answer=ANSWERS["sum_values"],
 )
 def sum_values(d):
-    return unimplemented()
+    return reduce(lambda x , y : x + y , d.values() , 0 )
 
 
 if __name__ == "__main__":
