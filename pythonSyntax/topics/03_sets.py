@@ -6,6 +6,7 @@ Fill in each function body (replace `unimplemented()`), then run:
     python topics/03_sets.py            # grade your solutions
     python topics/03_sets.py --answers  # show the answer key
 """
+from collections import defaultdict
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from harness import Quiz, unimplemented
@@ -27,7 +28,7 @@ quiz = Quiz("Sets")
     answer=ANSWERS["set_union"],
 )
 def set_union(a, b):
-    return unimplemented()
+    return a | b
 
 
 # Q2 -------------------------------------------------------------------------
@@ -42,7 +43,7 @@ def set_union(a, b):
     answer=ANSWERS["set_intersection"],
 )
 def set_intersection(a, b):
-    return unimplemented()
+    return a & b
 
 
 # Q3 -------------------------------------------------------------------------
@@ -57,7 +58,7 @@ def set_intersection(a, b):
     answer=ANSWERS["set_difference"],
 )
 def set_difference(a, b):
-    return unimplemented()
+    return a - b
 
 
 # Q4 -------------------------------------------------------------------------
@@ -72,7 +73,7 @@ def set_difference(a, b):
     answer=ANSWERS["set_symmetric_difference"],
 )
 def set_symmetric_difference(a, b):
-    return unimplemented()
+    return a ^ b
 
 
 # Q5 -------------------------------------------------------------------------
@@ -88,7 +89,7 @@ def set_symmetric_difference(a, b):
     answer=ANSWERS["is_subset"],
 )
 def is_subset(a, b):
-    return unimplemented()
+    return a < b
 
 
 # Q6 -------------------------------------------------------------------------
@@ -103,7 +104,7 @@ def is_subset(a, b):
     answer=ANSWERS["is_disjoint"],
 )
 def is_disjoint(a, b):
-    return unimplemented()
+    return  (a & b) == set()
 
 
 # Q7 -------------------------------------------------------------------------
@@ -118,7 +119,10 @@ def is_disjoint(a, b):
     answer=ANSWERS["add_item"],
 )
 def add_item(s, item):
-    return unimplemented()
+    new_set = s
+    new_set.add(item)
+    return new_set
+
 
 
 # Q8 -------------------------------------------------------------------------
@@ -133,7 +137,8 @@ def add_item(s, item):
     answer=ANSWERS["common_in_lists"],
 )
 def common_in_lists(xs, ys):
-    return unimplemented()
+
+    return set(xs) & set(ys)
 
 
 # Q9 -------------------------------------------------------------------------
@@ -149,7 +154,9 @@ def common_in_lists(xs, ys):
     answer=ANSWERS["dedupe_keep_order"],
 )
 def dedupe_keep_order(xs):
-    return unimplemented()
+     return list(dict.fromkeys(xs))
+
+
 
 
 # Q10 ------------------------------------------------------------------------
@@ -164,7 +171,7 @@ def dedupe_keep_order(xs):
     answer=ANSWERS["divisible_by_three"],
 )
 def divisible_by_three(s):
-    return unimplemented()
+    return { num for num in s if num % 3 == 0 }
 
 
 if __name__ == "__main__":
