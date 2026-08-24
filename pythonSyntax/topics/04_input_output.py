@@ -32,7 +32,7 @@ quiz = Quiz("Input and Output")
     answer=ANSWERS["multiplication_message"],
 )
 def multiplication_message(a, b):
-    return unimplemented()
+    return 'The multiplication is:' + (a*b)
 
 
 # Q2 -------------------------------------------------------------------------
@@ -47,7 +47,7 @@ def multiplication_message(a, b):
     answer=ANSWERS["star_join"],
 )
 def star_join(a, b, c):
-    return unimplemented()
+    return a+'***'+b+'***'+c
 
 
 # Q3 -------------------------------------------------------------------------
@@ -63,7 +63,7 @@ def star_join(a, b, c):
     answer=ANSWERS["to_binary"],
 )
 def to_binary(n):
-    return unimplemented()
+    return "The binary representation of " + n + " is " + format(n , 'b')
 
 
 # Q4 -------------------------------------------------------------------------
@@ -79,7 +79,7 @@ def to_binary(n):
     answer=ANSWERS["to_hex"],
 )
 def to_hex(n):
-    return unimplemented()
+    return 'The hexadecimal value is ' + format(n , 'x')
 
 
 # Q5 -------------------------------------------------------------------------
@@ -95,7 +95,8 @@ def to_hex(n):
     answer=ANSWERS["percentage"],
 )
 def percentage(num, den):
-    return unimplemented()
+    res = num/den * 100
+    return f"Return 'The result is: {res:.2f}"
 
 
 # Q6 -------------------------------------------------------------------------
