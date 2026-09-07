@@ -112,7 +112,12 @@ def percentage(num, den):
     answer=ANSWERS["right_align"],
 )
 def right_align(word):
-    return unimplemented()
+    word_len = len(word)
+    diff = 20 - word_len
+    if diff > 0 :
+        return word.rjust(diff)
+    
+    return word
 
 
 # Q7 -------------------------------------------------------------------------
