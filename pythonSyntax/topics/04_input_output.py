@@ -96,7 +96,7 @@ def to_hex(n):
 )
 def percentage(num, den):
     res = num/den * 100
-    return f"Return 'The result is: {res:.2f}"
+    return f"The result is: {res:.2f}%"
 
 
 # Q6 -------------------------------------------------------------------------
@@ -115,7 +115,7 @@ def right_align(word):
     word_len = len(word)
     diff = 20 - word_len
     if diff > 0 :
-        return word.rjust(diff)
+        return " " * diff + word
     
     return word
 
@@ -193,7 +193,7 @@ def currency(amount):
 def label_names(s):
     names = s.split(" ")
     
-    return f"Name1: {names[0]}\\nName2: {names[1]}\\nName3: {names[2]}"
+    return f"Name1: {names[0]}\nName2: {names[1]}\nName3: {names[2]}"
 
 
 if __name__ == "__main__":
