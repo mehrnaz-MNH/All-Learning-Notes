@@ -32,7 +32,7 @@ quiz = Quiz("Input and Output")
     answer=ANSWERS["multiplication_message"],
 )
 def multiplication_message(a, b):
-    return 'The multiplication is:' + (a*b)
+    return 'The multiplication is: ' + str(a*b)
 
 
 # Q2 -------------------------------------------------------------------------
@@ -63,7 +63,7 @@ def star_join(a, b, c):
     answer=ANSWERS["to_binary"],
 )
 def to_binary(n):
-    return "The binary representation of " + n + " is " + format(n , 'b')
+    return "The binary representation of " + str(n) + " is " + format(n , 'b')
 
 
 # Q4 -------------------------------------------------------------------------
@@ -133,7 +133,10 @@ def right_align(word):
     answer=ANSWERS["center_dashes"],
 )
 def center_dashes(text):
-    return unimplemented()
+    word_len = len(text)
+    side =  ( 40 - word_len ) // 2 
+    side_text = "-" * side
+    return side_text + text + side_text
 
 
 # Q8 -------------------------------------------------------------------------
@@ -148,7 +151,14 @@ def center_dashes(text):
     answer=ANSWERS["zero_pad"],
 )
 def zero_pad(n):
-    return unimplemented()
+    n_str = str(n)
+    len_n = len(n_str)
+    diff = 5 - len_n 
+    
+    if diff > 0 :
+        return "0" * diff + n_str
+
+    return n_str
 
 
 # Q9 -------------------------------------------------------------------------
@@ -164,7 +174,7 @@ def zero_pad(n):
     answer=ANSWERS["currency"],
 )
 def currency(amount):
-    return unimplemented()
+    return "Total Balance: " + "${:,.2f}".format(amount)
 
 
 # Q10 ------------------------------------------------------------------------
@@ -181,7 +191,9 @@ def currency(amount):
     answer=ANSWERS["label_names"],
 )
 def label_names(s):
-    return unimplemented()
+    names = s.split(" ")
+    
+    return f"Name1: {names[0]}\\nName2: {names[1]}\\nName3: {names[2]}"
 
 
 if __name__ == "__main__":
