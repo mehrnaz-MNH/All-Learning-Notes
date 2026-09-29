@@ -28,7 +28,7 @@ quiz = Quiz("Comprehensions")
     answer=ANSWERS["squares"],
 )
 def squares(n):
-    return unimplemented()
+    return [x**2 for x in range(1,n+1)]
 
 
 # Q2 -------------------------------------------------------------------------
@@ -44,7 +44,7 @@ def squares(n):
     answer=ANSWERS["only_evens"],
 )
 def only_evens(nums):
-    return unimplemented()
+    return [x for x in nums if x % 2 == 0]
 
 
 # Q3 -------------------------------------------------------------------------
@@ -60,7 +60,7 @@ def only_evens(nums):
     answer=ANSWERS["flatten"],
 )
 def flatten(matrix):
-    return unimplemented()
+    return [item for sub in matrix for item in sub]
 
 
 # Q4 -------------------------------------------------------------------------
@@ -75,7 +75,7 @@ def flatten(matrix):
     answer=ANSWERS["squares_of_odds"],
 )
 def squares_of_odds(nums):
-    return unimplemented()
+    return [ x**2 for x in nums if x%2!=0]
 
 
 # Q5 -------------------------------------------------------------------------
@@ -91,7 +91,7 @@ def squares_of_odds(nums):
     answer=ANSWERS["word_frequency"],
 )
 def word_frequency(words):
-    return unimplemented()
+    return {x: words.count(x)  for x in set(words) }
 
 
 # Q6 -------------------------------------------------------------------------
@@ -107,7 +107,7 @@ def word_frequency(words):
     answer=ANSWERS["passing_scores"],
 )
 def passing_scores(scores):
-    return unimplemented()
+    return {k:v for k,v in scores.items() if v >=50 }
 
 
 # Q7 -------------------------------------------------------------------------
@@ -123,7 +123,11 @@ def passing_scores(scores):
     answer=ANSWERS["unique_vowels"],
 )
 def unique_vowels(s):
-    return unimplemented()
+    rem_spaced = s.replace("",",")
+    s_arr = rem_spaced.split(",")
+    vol =  {"a", "e", "i", "o", "u"}
+    arr = [c for c in s_arr if c in vol]
+    return set(arr)
 
 
 # Q8 -------------------------------------------------------------------------
@@ -139,7 +143,7 @@ def unique_vowels(s):
     answer=ANSWERS["common_elements"],
 )
 def common_elements(a, b):
-    return unimplemented()
+    return set(a) & set(b) 
 
 
 # Q9 -------------------------------------------------------------------------
@@ -155,13 +159,18 @@ def common_elements(a, b):
     answer=ANSWERS["transpose"],
 )
 def transpose(m):
-    return unimplemented()
+    
+    return [[row[i] for row in m ] for i in range(len(m[0]))]
+   
+    
 
 
 # Q10 ------------------------------------------------------------------------
 # Build the Cartesian product of two lists as a list of (x, y) tuples, using
 # two for-clauses. The first list varies slowest.
 #   [1, 2] and ["a", "b"] -> [(1, "a"), (1, "b"), (2, "a"), (2, "b")]
+
+import itertools
 @quiz.question(
     "Return the Cartesian product of two lists as a list of (x, y) tuples.",
     cases=[
@@ -174,7 +183,7 @@ def transpose(m):
     answer=ANSWERS["cartesian_product"],
 )
 def cartesian_product(xs, ys):
-    return unimplemented()
+    return [(x,y) for x in xs for y in ys]
 
 
 if __name__ == "__main__":

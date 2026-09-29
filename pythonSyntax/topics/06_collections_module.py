@@ -30,7 +30,9 @@ quiz = Quiz("Collections Module")
     answer=ANSWERS["word_frequency"],
 )
 def word_frequency(sentence):
-    return unimplemented()
+    words = sentence.lower().split()
+    return dict(Counter(words))
+    
 
 
 # Q2 -------------------------------------------------------------------------
@@ -48,7 +50,21 @@ def word_frequency(sentence):
     answer=ANSWERS["top_n_common"],
 )
 def top_n_common(items, n):
-    return unimplemented()
+    count_dict = dict(Counter(items))
+    sorted_data_desc = dict(sorted(count_dict.items(), key=lambda item: item[1], reverse=True))
+
+    top_n = [()] * n 
+    counter = 0
+    
+    for key , value in sorted_data_desc.items():
+        if counter == n :
+            break
+        top_n[counter] = (key,value)
+        counter += 1
+    
+    return top_n
+    
+
 
 
 # Q3 -------------------------------------------------------------------------
